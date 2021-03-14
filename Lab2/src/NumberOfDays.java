@@ -19,7 +19,7 @@ public class NumberOfDays {
             case "May":                                          case "5":
             case "July":                         case "Jul":     case "7":
             case "August":      case "Aug.":     case "Aug":     case "8":
-            case "October":     case "Oct..":    case "Oct":     case "10":
+            case "October":     case "Oct.":    case "Oct":     case "10":
             case "December":    case "Dec.":     case "Dec":     case "12":
                         
                 System.out.println(" 31 days");
