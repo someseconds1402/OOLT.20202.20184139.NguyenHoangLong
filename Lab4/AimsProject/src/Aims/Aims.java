@@ -7,7 +7,7 @@ public class Aims {
 	public static void main(String[] args) {
 
 		Order anOrder = new Order();
-//		addDiscTest(anOrder);
+		// addDiscTest(anOrder);
 
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King");
 		dvd1.setCategory("Animation");
@@ -33,35 +33,37 @@ public class Aims {
 		dvd3.setDirector("John Musker");
 		dvd3.setLength(90);
 		anOrder.addDigitalVideoDisc(dvd3);
-		
-		
+
 		// dvd3.showDiscInformation();
 
-		 DigitalVideoDisc[] testOrder = new DigitalVideoDisc[3];
-		 testOrder[0] = dvd1;
-		 testOrder[1] = dvd2;
-		 testOrder[2] = dvd3;
+		DigitalVideoDisc[] testOrder = new DigitalVideoDisc[3];
+		testOrder[0] = dvd1;
+		testOrder[1] = dvd2;
+		testOrder[2] = dvd3;
 
-		 Order anotherOrder = new Order();
-		 anotherOrder.addDigitalVideoDisc(dvd1, dvd2);
-		 anotherOrder.addDigitalVideoDisc(testOrder);
-		 anotherOrder.addDigitalVideoDisc(testOrder);
-		 anotherOrder.addDigitalVideoDisc(testOrder);
-		 anotherOrder.addDigitalVideoDisc(testOrder);
+		Order anotherOrder = new Order();
+		anotherOrder.addDigitalVideoDisc(dvd1, dvd2);
+		anotherOrder.addDigitalVideoDisc(testOrder);
+		anotherOrder.addDigitalVideoDisc(testOrder);
+		anotherOrder.addDigitalVideoDisc(testOrder);
+		anotherOrder.addDigitalVideoDisc(testOrder);
 
-//		 System.out.println(anOrder.getNbOrders());;
+		// System.out.println(anOrder.getNbOrders());;
 
-//		anOrder.showList();
+		// anOrder.showList();
 	}
-	
-//	@Test
+
+	// @Test
 	// public static void addDiscTest (Order list) {
-	// 	DigitalVideoDisc dvd1 = new DigitalVideoDisc("Roger Allers","Animation","The Lion King",87,19.95f);
-	// 	DigitalVideoDisc dvd2 = new DigitalVideoDisc("Wayler Biket","Fiction","Hey guys",87,19.95f);
-	// 	DigitalVideoDisc dvd3 = new DigitalVideoDisc("Bit Bucket","Coder","Javascipt",87,19.95f);
-	// 	int check = list.addDigitalVideoDisc(dvd1, dvd2, dvd3);
-	// 	assertTrue(check == -1, " a");
-	// 	assertTrue(check == 1, " a");
+	// DigitalVideoDisc dvd1 = new DigitalVideoDisc("Roger Allers","Animation","The
+	// Lion King",87,19.95f);
+	// DigitalVideoDisc dvd2 = new DigitalVideoDisc("Wayler Biket","Fiction","Hey
+	// guys",87,19.95f);
+	// DigitalVideoDisc dvd3 = new DigitalVideoDisc("Bit
+	// Bucket","Coder","Javascipt",87,19.95f);
+	// int check = list.addDigitalVideoDisc(dvd1, dvd2, dvd3);
+	// assertTrue(check == -1, "Not enough slot!");
+	// assertTrue(check == 1, "Complete!");
 	// }
 
 }
