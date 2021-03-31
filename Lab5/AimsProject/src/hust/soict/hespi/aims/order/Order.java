@@ -108,30 +108,32 @@ public class Order {
 
 	// Week 4
 
-	public void addDigitalVideoDisc(DigitalVideoDisc ...dvdList) {
+	public boolean addDigitalVideoDisc(DigitalVideoDisc ...dvdList) {
 		if(dvdList != null && dvdList.length > 0) {
 			for (DigitalVideoDisc dvdPara : dvdList){
 				if(!addDigitalVideoDisc(dvdPara)){
 					System.out.println("Error! Full Ordered Items!");
-					return;
+					return false;
 				}
 			}
+			return true;
 		}
 		else {
 			System.out.println("Error!");
+			return false;
 		}
 	}
 
-	public void addDigitalVideoDisc(DigitalVideoDisc dvd1,DigitalVideoDisc dvd2) {
-		if(addDigitalVideoDisc(dvd1)) {
-			if(!addDigitalVideoDisc(dvd2)){
-				System.out.println("The disc " + dvd2.getTitle() + " could not be added!");
-			}
-		}
-		else {
-			System.out.println("Error, not enough slot for 2 discs");
-		}
-	}
+//	public void addDigitalVideoDisc(DigitalVideoDisc dvd1,DigitalVideoDisc dvd2) {
+//		if(addDigitalVideoDisc(dvd1)) {
+//			if(!addDigitalVideoDisc(dvd2)){
+//				System.out.println("The disc " + dvd2.getTitle() + " could not be added!");
+//			}
+//		}
+//		else {
+//			System.out.println("Error, not enough slot for 2 discs");
+//		}
+//	}
 	
 	public int getAluckyItem() {
 		int rand = (int)(Math.random() * nbOrders);
