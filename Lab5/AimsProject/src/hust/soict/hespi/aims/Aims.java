@@ -7,50 +7,33 @@ public class Aims {
 
 	public static void main(String[] args) {
 
-		// Order anOrder = new Order();
+		 DigitalVideoDisc dvd1 = new DigitalVideoDisc("Roger Allers", 
+				 "Animation", "The Lion King", 87, 19.95f);
+		 
+//		 System.out.println(dvd1.search("King the LION"));;
 
-		// DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King");
-		// dvd1.setCategory("Animation");
-		// dvd1.setCost(19.95f);
-		// dvd1.setDirector("Roger Allers");
-		// dvd1.setLength(87);
-		// anOrder.addDigitalVideoDisc(dvd1);
+		 DigitalVideoDisc dvd2 = new DigitalVideoDisc("George Lucas", 
+				 "Science Fiction", "Star Wars", 124, 24.95f);
 
-		// dvd1.showDiscInformation();
-
-		// DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars");
-		// dvd2.setCategory("Science Fiction");
-		// dvd2.setCost(24.95f);
-		// dvd2.setDirector("George Lucas");
-		// dvd2.setLength(124);
-		// anOrder.addDigitalVideoDisc(dvd2);
-
-		// dvd2.showDiscInformation();
-
-		// DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin");
-		// dvd3.setCategory("Science Fiction");
-		// dvd3.setCost(18.99f);
-		// dvd3.setDirector("John Musker");
-		// dvd3.setLength(90);
-		// anOrder.addDigitalVideoDisc(dvd3);
+		 DigitalVideoDisc dvd3 = new DigitalVideoDisc("John Musker", 
+				 "Science Fiction", "Aladdin", 90, 18.99f);
+		 
+		 DigitalVideoDisc dvd4 = new DigitalVideoDisc("Dmitri Ivanovich Mendeleev",
+				 "Nightmare", "Chemical periodic table",200 ,100.0f);
+		 
+		 DigitalVideoDisc dvd5 = new DigitalVideoDisc("Fujiko F. Fujio","Fiction", 
+				 "Doraemon",8120, 20.05f);
+		 
+		 DigitalVideoDisc dvd6 = new DigitalVideoDisc("Bit Bucket","Coder",
+				 "Javascipt",66, 15.33f);
 
 		// dvd3.showDiscInformation();
 
-		// DigitalVideoDisc[] testOrder = new DigitalVideoDisc[3];
-		// testOrder[0] = dvd1;
-		// testOrder[1] = dvd2;
-		// testOrder[2] = dvd3;
+		 Order testOrder = new Order();
+		 testOrder.addDigitalVideoDisc(dvd1, dvd2, dvd3, dvd4, dvd5, dvd6);
+		 
+		 testOrder.printWithFreeDisc();
 
-		// Order anotherOrder = new Order();
-		// anotherOrder.addDigitalVideoDisc(dvd1, dvd2);
-		// anotherOrder.addDigitalVideoDisc(testOrder);
-		// anotherOrder.addDigitalVideoDisc(testOrder);
-		// anotherOrder.addDigitalVideoDisc(testOrder);
-		// anotherOrder.addDigitalVideoDisc(testOrder);
-
-		// System.out.println(anOrder.getNbOrders());;
-
-		// anOrder.showList();
 	}
 
 }

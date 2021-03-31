@@ -2,6 +2,7 @@ package hust.soict.hespi.aims.order;
 
 import hust.soict.hespi.aims.disc.DigitalVideoDisc;
 import hust.soict.hespi.aims.utils.MyDate;
+import java.lang.Math;
 
 public class Order {
 	public static final int MAX_NUMBERS_ORDERED = 10;
@@ -101,7 +102,7 @@ public class Order {
 			itemsOrdered[i].showDiscInformation();
 			System.out.println();
 		}
-		System.out.println("\nTotla cost: " + totalCost() + "$");
+		System.out.println("\nTotal cost: " + totalCost() + "$");
 		System.out.println("***************************************************\n");
 	}
 
@@ -131,7 +132,19 @@ public class Order {
 			System.out.println("Error, not enough slot for 2 discs");
 		}
 	}
-
+	
+	public int getAluckyItem() {
+		int rand = (int)(Math.random() * nbOrders);
+		return rand;
+	}
+	
+	public void printWithFreeDisc() {
+		int pos = getAluckyItem();
+		itemsOrdered[pos].setCost(0f);
+		System.out.println("\n\nOMG! Hey bro! Trust me! You are so lucky! '" 
+				+ itemsOrdered[pos].getTitle() + "' is FREE for you!\nLook at the bill below:");
+		showList();
+	}
 	
 
 }
