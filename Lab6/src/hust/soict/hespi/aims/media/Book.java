@@ -62,12 +62,8 @@ public class Book extends Media {
 	
 	public void showBookInformation() {		
 		System.out.print("Book - [" + title + "]");
-		System.out.print(" - [" + category + "]");
-		System.out.print(" - [");
-		for(String author : authors) {
-			System.out.print(author + " - ");
-		}
-		System.out.print("]");
+		System.out.print(" - [" + category + "] - ");
+		System.out.print(authors );
 		System.out.print(": [" + cost + "]$");
 	}
 	

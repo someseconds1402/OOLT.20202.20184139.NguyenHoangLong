@@ -24,7 +24,7 @@ public class Aims {
 		 Book book1 = new Book("Nightmare", "Chemical periodic table",
 				 100.0f, "Dmitri Ivanovich Mendeleev");
 		
-		 Book book2 = new Book("Fiction", "Doraemon", 20.05f, "Fujiko F. Fujio");
+		 Book book2 = new Book("Fiction", "Doraemon", 20.05f, "Fujiko F. Fujio", "Someone1", "Someone2");
 		
 		 DigitalVideoDisc dvd4 = new DigitalVideoDisc("Bit Bucket","Coder",
 		 "Javascipt",66, 15.33f);
