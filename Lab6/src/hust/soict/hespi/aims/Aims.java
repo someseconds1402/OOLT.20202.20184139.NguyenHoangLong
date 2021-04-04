@@ -35,12 +35,13 @@ public class Aims {
 		 
 		
 		boolean check = false;
+		Scanner keyboard = new Scanner(System.in);
 		
 		while(check == false) {
 			System.out.println();
 			System.out.println("Welcome to Order Management Application!\n ");
 			System.out.print("Do you want to create new order? Y/N: ");
-			Scanner keyboard = new Scanner(System.in);
+			
 			String option = keyboard.next();
 			
 			switch(option) {
@@ -73,7 +74,7 @@ public class Aims {
 			System.out.println("\n--------------------------------");
 			System.out.print("Please choose a number: ");
 
-			Scanner keyboard = new Scanner(System.in);
+			
 			String option = keyboard.next();
 			
 			System.out.println("--------------------------------");
@@ -112,7 +113,7 @@ public class Aims {
 				    	System.out.println("Remove complete!");
 				    }
 				  } catch(NumberFormatException e){  
-					  System.out.println("***Invalid Input! Please try again!***");  
+					  System.out.println("***Invalid Input! Return Menu!***");  
 				  }  
 
 				break;
@@ -126,11 +127,9 @@ public class Aims {
 				System.exit(1);;
 			}
 			default:
-				System.out.println("***Invalid Input! Please try again!***");
+				System.out.println("***Invalid Input! Return Menu!***");
 			}
 			
-//			System.out.println("\n--------------------------------\n");
-
 		}
 
 	}
