@@ -101,19 +101,20 @@ public class Aims {
 			}
 			case "2": {
 				System.out.print("Enter ID: ");
-				int id = keyboard.nextInt();
-				if(id == (int)id) {
-					if(!newOrder.removeMedia(id)) {
-						System.out.println("***Error! This item does not exist!***");
-					}
-					else {
-						System.out.println("Remove complete!");
-					}
-					
-				}
-//				else {
-//					System.out.println("***Invalid Input! Please try again!***");
-//				}
+				String idString = keyboard.next();
+
+				try {  
+				    int id = Integer.parseInt(idString);  
+				    if(!newOrder.removeMedia(id)) {
+				    	System.out.println("***Error! This item does not exist!***");
+				    }
+				    else {
+				    	System.out.println("Remove complete!");
+				    }
+				  } catch(NumberFormatException e){  
+					  System.out.println("***Invalid Input! Please try again!***");  
+				  }  
+
 				break;
 			}
 			case "3": {
