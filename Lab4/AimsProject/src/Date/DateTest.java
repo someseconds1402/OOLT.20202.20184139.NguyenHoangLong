@@ -30,20 +30,21 @@ public class DateTest {
 		// week 4
 
 		// Gọi method readYear với các giá trị khác nhau
-		// MyDate timeTest6 = new MyDate();
-		// timeTest6.print();
-		// System.out.println(timeTest6.readYear("twenTy seventy-seven"));
-		// System.out.println(timeTest6.readYear("three huNdred"));
-		// System.out.println(timeTest6.readYear("nineteen seVENty-five"));
-		// System.out.println(timeTest6.readYear("forty-ThReE twenty-one"));
-		// System.out.println(timeTest6.readYear("sixty-five"));
-		// System.out.println(timeTest6.readYear("seven hundred fifty-three"));
-		// System.out.println(timeTest6.readYear("two thousand three"));
+		MyDate timeTest6 = new MyDate();
+		timeTest6.print();
+		System.out.println(timeTest6.readYear("twenTy seventy-seven"));
+		System.out.println(timeTest6.readYear("three huNdred"));
+		System.out.println(timeTest6.readYear("nineteen seVENty-five"));
+		System.out.println(timeTest6.readYear("forty-ThReE twenty-one"));
+		System.out.println(timeTest6.readYear("sixty-five"));
+		System.out.println(timeTest6.readYear("seven hundred fifty-three"));
+		System.out.println(timeTest6.readYear("two thousand three"));
+		System.out.println(timeTest6.readYear("twenty hundred"));
 
 		// Đọc date "5/6/2345" với các format khác nhau
-		MyDate timeTest7 = new MyDate("twenty-first", "jun", "twenty-one forty-five");
-		timeTest7.print();
-		timeTest7.printWithDifferentFormats();
+		// MyDate timeTest7 = new MyDate("twenty-first", "jun", "twenty-one forty-five");
+		// timeTest7.print();
+		// timeTest7.printWithDifferentFormats();
 
 		// Tạo object dateList là mảng các Object MyDate bên trên, in ra mảng trước và sau sắp xếp
 		// DateUtils dateList = new DateUtils();

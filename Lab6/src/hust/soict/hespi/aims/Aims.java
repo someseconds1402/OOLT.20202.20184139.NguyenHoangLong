@@ -5,6 +5,9 @@ import hust.soict.hespi.aims.media.DigitalVideoDisc;
 import hust.soict.hespi.aims.media.Media;
 import hust.soict.hespi.aims.order.Order;
 import java.util.Scanner;
+
+import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardDownRightHandler;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,16 +78,16 @@ public class Aims {
 			System.out.print("Please choose a number: ");
 
 			
-			String option = keyboard.next();
-			
+			int option = keyboard.nextInt();
+			String bufferString = keyboard.nextLine();
 			System.out.println("--------------------------------");
 			
 			System.out.println();
 
 			switch (option) {
-			case "1": {
+			case 1: {
 				System.out.print("Enter title: ");
-				String inputString = keyboard.next();
+				String inputString = keyboard.nextLine();
 				
 				Media something = managerOrder.search(inputString);
 				if(something != null) {
@@ -100,7 +103,7 @@ public class Aims {
 				}
 				break;
 			}
-			case "2": {
+			case 2: {
 				System.out.print("Enter ID: ");
 				String idString = keyboard.next();
 
@@ -118,11 +121,11 @@ public class Aims {
 
 				break;
 			}
-			case "3": {
+			case 3: {
 				newOrder.showList();
 				break;
 			}
-			case "0": {
+			case 0: {
 				System.out.println("Goodbye!\n");
 				System.exit(1);;
 			}
@@ -130,6 +133,7 @@ public class Aims {
 				System.out.println("***Invalid Input! Return Menu!***");
 			}
 			
+//			keyboard.close();
 		}
 
 	}
