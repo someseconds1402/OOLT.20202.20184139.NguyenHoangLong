@@ -6,12 +6,9 @@ import hust.soict.hespi.aims.media.Media;
 import hust.soict.hespi.aims.order.Order;
 import java.util.Scanner;
 
-import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardDownRightHandler;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class Aims {
+	
+	public static Scanner keyboard = new Scanner(System.in);
 
 	public static void main(String[] args) {
 
@@ -38,7 +35,6 @@ public class Aims {
 		 
 		
 		boolean check = false;
-		Scanner keyboard = new Scanner(System.in);
 		
 		while(check == false) {
 			System.out.println();
