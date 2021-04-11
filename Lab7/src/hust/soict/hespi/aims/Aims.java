@@ -102,8 +102,12 @@ public class Aims {
 				String inputString = keyboard.nextLine();
 				newOrder.addItem(managerOrder, inputString, type);
 				Media something = managerOrder.search(inputString, type);
+				if (something == null) {
+					break;
+				}
 
 				if (type == 2 || type == 3) {
+
 					System.out.println("Do you want to play this CD/DVD? Y : N");
 					System.out.print("Your option: ");
 
