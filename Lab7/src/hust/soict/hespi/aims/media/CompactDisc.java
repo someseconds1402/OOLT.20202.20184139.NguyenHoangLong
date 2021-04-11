@@ -65,7 +65,7 @@ public class CompactDisc extends Disc implements Playable {
 	}
 
 	public void showCompactDiscInfo() {
-		System.out.print("DVD - [" + title + "]");
+		System.out.print("CD - [" + title + "]");
 		System.out.print(" - [" + category + "]");
 		System.out.print(" - [" + artist + "]");
 		System.out.print(": [" + cost + "]$\n");

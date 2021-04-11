@@ -4,10 +4,8 @@ import hust.soict.hespi.aims.media.Book;
 import hust.soict.hespi.aims.media.CompactDisc;
 import hust.soict.hespi.aims.media.DigitalVideoDisc;
 import hust.soict.hespi.aims.media.Media;
-import java.lang.Math;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Order {
 
