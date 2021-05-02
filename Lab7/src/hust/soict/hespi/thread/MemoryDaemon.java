@@ -6,6 +6,10 @@ public class MemoryDaemon implements Runnable {
 
     private long memoryUsed = 0;
 
+    public MemoryDaemon() {
+        new Thread(this).start();
+    }
+
     @Override
     public void run() {
         Runtime rt = Runtime.getRuntime();

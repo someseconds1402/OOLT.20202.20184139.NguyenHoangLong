@@ -6,48 +6,126 @@ import hust.soict.hespi.aims.media.DigitalVideoDisc;
 import hust.soict.hespi.aims.media.Media;
 import hust.soict.hespi.aims.media.Track;
 import hust.soict.hespi.aims.order.Order;
-import hust.soict.hespi.thread.MemoryDaemon;
 
 import java.util.Scanner;
 
-public class Aims {
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Aims extends JFrame{
 
 	private static Scanner keyboard = new Scanner(System.in);
 	private static Order managerOrder = createManageOrder();
-	private static MemoryDaemon memoryDaemon = new MemoryDaemon();
+	private static JButton btn1;
+	private static JButton btn2;
+	private static JButton btn3;
 
 	// Main
 
 	public static void main(String[] args) {
-
-		boolean check = false;
-
-		while (check == false) {
-			System.out.println();
-			System.out.println("Welcome to Order Management Application!\n ");
-			System.out.print("Do you want to create new order? Y/N: ");
-
-			String option = keyboard.next();
-
-			switch (option) {
-			case "y":
-			case "Y":
-				System.out.println("\n**Create new order complete!**\n");
-				check = true;
-				break;
-			case "n":
-			case "N":
-				System.out.println("Goodbye!\n");
-				System.exit(0);
-			default:
-				System.out.println("***Invalid Input! Please try again!***\n");
-			}
+		
+		int choice = JOptionPane.showConfirmDialog(null, "Do you want to create new order?", "AIMS", JOptionPane.YES_NO_OPTION);
+		if(choice == 0) {
+			SwingUtilities.invokeLater(new Runnable() {
+				
+				@Override
+				public void run() {
+					new Aims();
+					
+				}
+			});
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Good bye!");
 		}
 
-		Order newOrder = new Order();
+//		boolean check = false;
+//
+//		while (check == false) {
+//			System.out.println();
+//			System.out.println("Welcome to Order Management Application!\n ");
+//			System.out.print("Do you want to create new order? Y/N: ");
+//
+//			String option = keyboard.next();
+//
+//			switch (option) {
+//			case "y":
+//			case "Y":
+//				System.out.println("\n**Create new order complete!**\n");
+//				check = true;
+//				break;
+//			case "n":
+//			case "N":
+//				System.out.println("Goodbye!\n");
+//				System.exit(0);
+//			default:
+//				System.out.println("***Invalid Input! Please try again!***\n");
+//			}
+//		}
+//
+//		Order newOrder = new Order();
+//
+//		printMenu(newOrder, managerOrder);
 
-		printMenu(newOrder, managerOrder);
-
+	}
+	
+	public Aims() {
+		
+		Container cp = getContentPane();
+		cp.setPreferredSize(new Dimension(600, 600));
+//		cp.setLayout(new FlowLayout());
+		
+		BoxLayout boxLayout = new BoxLayout(cp, BoxLayout.Y_AXIS);
+		cp.setLayout(boxLayout);
+		
+		JPanel jPanel = new JPanel();
+		jPanel.setPreferredSize(new Dimension(600, 70));
+//		jPanel.setBackground(Color.gray);
+		jPanel.setLayout(new FlowLayout());
+		
+		
+		
+		
+		btn1 = new JButton("Add media");
+		btn2 = new JButton("Remove media");
+		btn3 = new JButton("Show order");
+		
+		jPanel.add(btn1);
+		jPanel.add(btn2);
+		jPanel.add(btn3);
+		
+		cp.add(jPanel);
+		
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Test");
+		setSize(600, 600);
+		setVisible(true);
+		
+		// Button 3
+		btn3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JPanel subJPanel = new JPanel();
+				subJPanel.setLayout(boxLayout);
+				subJPanel.setLocation(50, 50);
+				subJPanel.setPreferredSize(new Dimension(400, 400));
+				subJPanel.setBackground(Color.gray);
+				
+				int size = managerOrder.getSize();
+				JLabel[] list = new JLabel[size];
+				for(int i = 0; i < size; i++) {
+					Media store = managerOrder.pop(i);
+					list[i].setText(store.getTitle() + " - " + store.getCategory() + " - " + store.getCost() + "$");
+					subJPanel.add(list[i]);
+				}
+				
+				cp.add(subJPanel);
+			}
+		});
 	}
 
 	private static Order createManageOrder() {
