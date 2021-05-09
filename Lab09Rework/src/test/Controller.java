@@ -14,10 +14,13 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -32,7 +35,8 @@ public class Controller implements Initializable {
 	
 	private static Order managerOrder = createManageOrder();
 	private static Order newOrder = createManageOrder();
-	boolean check = false;
+	private boolean check = false;
+	private int count = 0;
 	
 	private static Order createManageOrder() {
 
@@ -40,10 +44,14 @@ public class Controller implements Initializable {
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("George Lucas", "Science Fiction", "Star Wars", 124, 24.95f);
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("John Musker", "Science Fiction", "Aladdin", 90, 18.99f);
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc("Bit Bucket", "Coder", "Javascript", 66, 15.33f);
+		DigitalVideoDisc dvd5 = new DigitalVideoDisc("Three teacher", "Legendary", "Susan 0175", 66, 15.33f);
 
 		Book book1 = new Book("Nightmare", "Chemical periodic table", 100.0f, "Dmitri Ivanovich Mendeleev");
 		Book book2 = new Book("Fiction", "Doraemon", 20.05f, "Fujiko F. Fujio", "Someone1", "Someone2");
-
+		Book book3 = new Book("Tragedy", "Nauy forest", 25.12f, "Murakami Haruki");
+		Book book4 = new Book("Fantasy", "Road to thach dau", 20.12f, "S1mple");
+		Book book5 = new Book("Legendary", "300 bai code thieu nhi", 100.00f, "Vozer");
+		
 		Track track1 = new Track(12, "Hello");
 		Track track2 = new Track(10, "Send my love");
 		Track track3 = new Track(8, "Someone like you");
@@ -53,7 +61,7 @@ public class Controller implements Initializable {
 		CompactDisc album1 = new CompactDisc("Adele", "Classic", "21", 245.55f, track1, track2, track3, track4, track5);
 
 		Order managerOrder = new Order();
-		managerOrder.addMedia(dvd1, dvd2, dvd3, dvd4, book1, book2, album1);
+		managerOrder.addMedia(dvd1, dvd2, dvd3, dvd4, dvd5, book1, book2, book3, book4, book5, album1);
 
 		return managerOrder;
 	}
@@ -71,25 +79,56 @@ public class Controller implements Initializable {
 	
 	// Button 'Create New Order' eventHandle
 	
-	@FXML AnchorPane showImage = new AnchorPane();
-	@FXML Label topLabel = new Label();
-	@FXML Label bottomLabel = new Label();
+	@FXML AnchorPane showImage;
+	@FXML Label topLabel;
+	@FXML Label bottomLabel;
+	@FXML Button button1;
+	@FXML ImageView sasuke, pain;
 	
 	public void showDialog(ActionEvent e) {
-		if(check) {
-			topLabel.setText("So...");
-			bottomLabel.setText("That's your choice, Itachi?");
-			
+		if(check) {			
+			if(count % 3 == 0) {
+				topLabel.setText("So...");
+				bottomLabel.setText("That's your choice, Itachi?");
+				sasuke.setVisible(true);
+				pain.setVisible(false);
+			}
+			else if(count % 4 == 0) {
+				topLabel.setText("The world...");
+				bottomLabel.setText("Shall know pain!");
+				sasuke.setVisible(false);
+				pain.setVisible(true);
+			}
+			else if(count % 5 == 0){
+				topLabel.setText("LOVE...");
+				bottomLabel.setText("hatred AROSE");
+				sasuke.setVisible(false);
+				pain.setVisible(true);
+			}
+			else if(count % 7 == 0){
+				topLabel.setText("In my eyes...");
+				bottomLabel.setText("Only darkness remains...");
+				sasuke.setVisible(true);
+				pain.setVisible(false);
+			}
+			else {
+				topLabel.setText("What is the village?");
+				bottomLabel.setText("What is shinobi? ");
+				sasuke.setVisible(true);
+				pain.setVisible(false);
+			}
 			showImage.setVisible(true);
 			addItems.setVisible(false);
 			removeItems.setVisible(false);
 			showOrder.setVisible(false);
 		}
 		else {
-			topLabel.setText("CONGRATULATION!");
-			bottomLabel.setText("Create new order successful!");
+			topLabel.setText("CREATE NEW ORDER");
+			bottomLabel.setText("SUCCESSFUL!");
 			check = true;
+			button1.setText("Home");
 		}
+		count++;
 //		Dialog<String> dialog = new Dialog<String>();
 
 //		dialog.setTitle("MESSAGE!");
@@ -129,24 +168,26 @@ public class Controller implements Initializable {
 			topLabel.setText("WARNING!");
 			bottomLabel.setText("Please create new order!");
 		}
+		count++;
 		
 	}
 	
 	// Button 'Remove Items' eventHandle
 	
-	@FXML private AnchorPane removeItems = new AnchorPane();
+	@FXML private AnchorPane removeItems;
 	
 	public void removeItemsEvent(ActionEvent e) {
 		if(check) {
 			showImage.setVisible(false);
 			addItems.setVisible(false);
 			removeItems.setVisible(true);
-			showOrder.setVisible(true);
+			showOrder.setVisible(false);
 		}
 		else {
 			topLabel.setText("WARNING!");
 			bottomLabel.setText("Please create new order!");
 		}
+		count++;
 	}
 	
 	
@@ -166,12 +207,13 @@ public class Controller implements Initializable {
 			topLabel.setText("WARNING!");
 			bottomLabel.setText("Please create new order!");
 		}
-		
+		count++;
 	}
 
 	@Override
 	public void initialize(java.net.URL arg0, ResourceBundle arg1) {
 		
+		/******************************************************************************/
 		//Add Items
 		
 		List = FXCollections.observableArrayList();
@@ -219,14 +261,17 @@ public class Controller implements Initializable {
 		
 		table.setItems(sortedOrder);
 		
-		
+		/******************************************************************************/
 		//Show Order
 		
 		int type, size = newOrder.getSize();
 		Media media;
 		ArrayList<Track> tracksList;
 		TreeItem<String> title, category, cost, tracks;
-		TreeItem<String> root = new TreeItem<>("Your Order:");
+		TreeItem<String> root = new TreeItem<>();
+		root.getChildren().add(new TreeItem<>("***********************************************"));
+		root.getChildren().add(new TreeItem<>("***[Your Order]:"));
+		
 		for(int i = 0; i < size; i++) {
 			media = newOrder.pop(i);
 			title = new TreeItem<>(media.getTitle());
@@ -254,13 +299,14 @@ public class Controller implements Initializable {
 				title.getChildren().add(tracks);
 			}
 			title.getChildren().add(cost);
-			
+	
 			root.getChildren().add(title);
 			
 		}
 		root.getChildren().add(new TreeItem<String>("--------------------------------------------"));
 		root.getChildren().add(new TreeItem<String>("***[Total cost]: " + newOrder.totalCost() + "$"));
 		showOrder.setRoot(root);
+		showOrder.setShowRoot(false);
 		showOrder.setVisible(false);
 	}
 	

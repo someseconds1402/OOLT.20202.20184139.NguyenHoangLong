@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Order {
 
 	private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
-	private final int MAX_ORDERED_NUMBER = 10;
+	private final int MAX_ORDERED_NUMBER = 30;
 	private final LocalDate today = LocalDate.now();
 
 	public void printType() {
