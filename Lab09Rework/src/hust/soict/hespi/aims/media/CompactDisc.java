@@ -2,10 +2,13 @@ package hust.soict.hespi.aims.media;
 
 import java.util.ArrayList;
 
+import javafx.scene.control.CheckBox;
+
 public class CompactDisc extends Disc implements Playable {
 	private String artist;
 	private ArrayList<Track> tracks = new ArrayList<Track>();
 	private final int type = 3;
+	protected CheckBox selected;
 
 	// Getter and Setter
 
@@ -28,6 +31,15 @@ public class CompactDisc extends Disc implements Playable {
 	public void setArtist(String artist) {
 		this.artist = artist;
 	}
+
+	public CheckBox getSelected() {
+		return selected;
+	}
+
+	public void setSelected(CheckBox selected) {
+		this.selected = selected;
+	}
+
 
 	// Constructor
 	public CompactDisc() {

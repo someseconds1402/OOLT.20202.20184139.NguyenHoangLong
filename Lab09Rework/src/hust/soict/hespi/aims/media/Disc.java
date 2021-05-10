@@ -1,8 +1,11 @@
 package hust.soict.hespi.aims.media;
 
+import javafx.scene.control.CheckBox;
+
 public class Disc extends Media {
 	private int length;
 	private String director;
+	protected CheckBox selected;
 
 	// Getter and Setter
 	public int getLength() {
@@ -21,11 +24,19 @@ public class Disc extends Media {
 		this.director = director;
 	}
 
+	public CheckBox getSelected() {
+		return selected;
+	}
+
+	public void setSelected(CheckBox selected) {
+		this.selected = selected;
+	}
+
 	// Constructor
 	public Disc() {
 		super();
 	}
-
+	
 	public Disc(String category, String title, float cost) {
 		super(category, title, cost);
 	}

@@ -3,10 +3,13 @@ package hust.soict.hespi.aims.media;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.control.CheckBox;
+
 public class Book extends Media {
 
 	private List<String> authors = new ArrayList<String>();
 	private final int type = 1;
+	protected CheckBox selected;
 
 	// Getter and Setter
 
@@ -24,6 +27,14 @@ public class Book extends Media {
 	
 	public String getAuthor() {
 		return authors.toString().replace("[", "").replace("]", "");
+	}
+	
+	public CheckBox getSelected() {
+		return selected;
+	}
+
+	public void setSelected(CheckBox selected) {
+		this.selected = selected;
 	}
 
 	// Constructor
@@ -54,7 +65,7 @@ public class Book extends Media {
 			addAthor(author);
 		}
 	}
-
+	
 	// Method
 
 	public void addAthor(String authorName) {

@@ -71,6 +71,15 @@ public class Order {
 			return true;
 		}
 	}
+	
+	public boolean removeMedia(Media... items) {
+		for (Media item : items) {
+			if (!removeMedia(item)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	public float totalCost() {
 		float total = 0;

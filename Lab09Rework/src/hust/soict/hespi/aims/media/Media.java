@@ -1,5 +1,7 @@
 package hust.soict.hespi.aims.media;
 
+import javafx.scene.control.CheckBox;
+
 public class Media {
 
 	protected String title;
@@ -8,6 +10,7 @@ public class Media {
 	protected int type;
 	protected String typeString;
 	protected int ID = 1;
+	protected CheckBox selected;
 
 	// Constructor
 
@@ -28,9 +31,11 @@ public class Media {
 
 	public Media(String category, String title, float cost) {
 		this();
+		CheckBox cb = new CheckBox();
 		this.category = category;
 		this.title = title;
 		this.cost = cost;
+		this.selected = cb;
 	}
 
 	// Getter and Setter
@@ -67,9 +72,16 @@ public class Media {
 		this.cost = cost;
 	}
 	
-	
+	public CheckBox getSelected() {
+		return selected;
+	}
+
+	public void setSelected(CheckBox selected) {
+		this.selected = selected;
+	}
 
 	// Method
+	
 
 	public String getTypeString() {
 		int check = this.getType();

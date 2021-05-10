@@ -1,10 +1,13 @@
 package hust.soict.hespi.aims.media;
 
+import javafx.scene.control.CheckBox;
+
 public class DigitalVideoDisc extends Disc implements Playable{
 
 	private int length;
 	private String director;
 	private final int type = 2;
+	protected CheckBox selected;
 	
 	// Getter and Setter
 	
@@ -26,6 +29,14 @@ public class DigitalVideoDisc extends Disc implements Playable{
 
 	public void setDirector(String director) {
 		this.director = director;
+	}
+
+	public CheckBox getSelected() {
+		return selected;
+	}
+
+	public void setSelected(CheckBox selected) {
+		this.selected = selected;
 	}
 	
 	// Constructor
@@ -54,7 +65,7 @@ public class DigitalVideoDisc extends Disc implements Playable{
 		this.director = director;
 		this.length = length;
 	}
-	
+		
 	public void showDiscInfo() {		
 		System.out.print("DVD - [" + title + "]");
 		System.out.print(" - [" + category + "]");

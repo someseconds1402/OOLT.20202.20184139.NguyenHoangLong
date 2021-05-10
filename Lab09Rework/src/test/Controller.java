@@ -16,6 +16,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -34,9 +36,9 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 	
 	private static Order managerOrder = createManageOrder();
-	private static Order newOrder = createManageOrder();
+	private static Order newOrder = new Order();
 	private boolean check = false;
-	private int count = 0;
+	private int index;
 	
 	private static Order createManageOrder() {
 
@@ -44,7 +46,7 @@ public class Controller implements Initializable {
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("George Lucas", "Science Fiction", "Star Wars", 124, 24.95f);
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("John Musker", "Science Fiction", "Aladdin", 90, 18.99f);
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc("Bit Bucket", "Coder", "Javascript", 66, 15.33f);
-		DigitalVideoDisc dvd5 = new DigitalVideoDisc("Three teacher", "Legendary", "Susan 0175", 66, 15.33f);
+		DigitalVideoDisc dvd5 = new DigitalVideoDisc("Three teacher", "Parody", "Susan 0175", 66, 15.33f);
 
 		Book book1 = new Book("Nightmare", "Chemical periodic table", 100.0f, "Dmitri Ivanovich Mendeleev");
 		Book book2 = new Book("Fiction", "Doraemon", 20.05f, "Fujiko F. Fujio", "Someone1", "Someone2");
@@ -70,6 +72,21 @@ public class Controller implements Initializable {
 	// Return homepage
 	
 	public void returnHomeEvent(ActionEvent e) {
+		topLabel.setText("So...");
+		bottomLabel.setText("That's your choice, Itachi?");
+		sasuke.setVisible(true);
+		pain.setVisible(false);
+		tobirama.setVisible(false);
+		
+		searchField.setText(null);
+		for(int i = 0; i < List2.size(); i++) {
+			Media item = List2.get(i);
+			if(item.getSelected().isSelected()) {
+				item.getSelected().setSelected(false);;
+			}
+		}
+		removeEventListening();
+		
 		showImage.setVisible(true);
 		addItems.setVisible(false);
 		removeItems.setVisible(false);
@@ -83,42 +100,75 @@ public class Controller implements Initializable {
 	@FXML Label topLabel;
 	@FXML Label bottomLabel;
 	@FXML Button button1;
-	@FXML ImageView sasuke, pain;
+	@FXML ImageView sasuke, pain, tobirama;
 	
 	public void showDialog(ActionEvent e) {
+		
 		if(check) {			
-			if(count % 3 == 0) {
+			index = (int)(Math.random()*7);
+			switch (index) {
+			case 0:
 				topLabel.setText("So...");
 				bottomLabel.setText("That's your choice, Itachi?");
 				sasuke.setVisible(true);
 				pain.setVisible(false);
-			}
-			else if(count % 4 == 0) {
+				tobirama.setVisible(false);
+				break;
+			case 1:
 				topLabel.setText("The world...");
 				bottomLabel.setText("Shall know pain!");
 				sasuke.setVisible(false);
 				pain.setVisible(true);
-			}
-			else if(count % 5 == 0){
+				tobirama.setVisible(false);
+				break;
+			case 2:
 				topLabel.setText("LOVE...");
 				bottomLabel.setText("hatred AROSE");
 				sasuke.setVisible(false);
 				pain.setVisible(true);
-			}
-			else if(count % 7 == 0){
+				tobirama.setVisible(false);
+				break;
+			case 3:
 				topLabel.setText("In my eyes...");
 				bottomLabel.setText("Only darkness remains...");
 				sasuke.setVisible(true);
 				pain.setVisible(false);
-			}
-			else {
+				tobirama.setVisible(false);
+				break;
+			case 4:
 				topLabel.setText("What is the village?");
 				bottomLabel.setText("What is shinobi? ");
 				sasuke.setVisible(true);
 				pain.setVisible(false);
+				tobirama.setVisible(false);
+				break;
+			case 5:
+				topLabel.setText("It was all due to the ");
+				bottomLabel.setText("UCHIHA");
+				sasuke.setVisible(false);
+				pain.setVisible(false);
+				tobirama.setVisible(true);
+				break;
+			case 6:
+				topLabel.setText("You are also possessed by");
+				bottomLabel.setText("the evil UCHIHA, kid");
+				sasuke.setVisible(false);
+				pain.setVisible(false);
+				tobirama.setVisible(true);
+				break;
+			case 7:
+				break;
 			}
+			
 			showImage.setVisible(true);
 			addItems.setVisible(false);
+			
+			for(int i = 0; i < List2.size(); i++) {
+				Media item = List2.get(i);
+				if(item.getSelected().isSelected()) {
+					item.getSelected().setSelected(false);;
+				}
+			}
 			removeItems.setVisible(false);
 			showOrder.setVisible(false);
 		}
@@ -128,7 +178,7 @@ public class Controller implements Initializable {
 			check = true;
 			button1.setText("Home");
 		}
-		count++;
+		
 //		Dialog<String> dialog = new Dialog<String>();
 
 //		dialog.setTitle("MESSAGE!");
@@ -153,7 +203,11 @@ public class Controller implements Initializable {
 
 	@FXML private TableColumn<Media, String> typeTable;
 	
+	@FXML private TableColumn<Media, CheckBox> selectedTable;
+	
 	private ObservableList<Media> List;
+	private FilteredList<Media> filteredOrder;
+	private SortedList<Media> sortedOrder;
 	
 	@FXML private TextField searchField;
 	
@@ -167,16 +221,62 @@ public class Controller implements Initializable {
 		else {
 			topLabel.setText("WARNING!");
 			bottomLabel.setText("Please create new order!");
-		}
-		count++;
-		
+		}	
 	}
 	
-	// Button 'Remove Items' eventHandle
+	// Add items eventHandle
 	
+	public void addItemsEvent(ActionEvent e) {
+		int count = 0;
+		for(int i = 0; i < sortedOrder.size(); i++) {
+			Media item = sortedOrder.get(i);
+			if(item.getSelected().isSelected()) {
+				newOrder.addMedia(item);
+				item.getSelected().setSelected(false);
+				count++;
+			}
+		}	
+//		System.out.println(newOrder.getSize());
+//		System.out.println(List2.size());
+//		System.out.println(sortedOrder2.size());
+		Dialog<String> dialog = new Dialog<String>();
+		if(count == 0) {
+			dialog.setTitle("MESSAGE!");
+			dialog.setContentText("No item to add!");
+		} else {
+			dialog.setTitle("MESSAGE!");
+			dialog.setContentText("Add item(s) successful!");	
+			removeEventListening();
+			showEventListening();
+		}
+		
+		dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+		dialog.show();
+
+	}
+	
+	
+	// Button 'Remove Items' eventHandle
+
 	@FXML private AnchorPane removeItems;
 	
-	public void removeItemsEvent(ActionEvent e) {
+	@FXML private TableView<Media> table2;
+	
+	@FXML private TableColumn<Media, Integer> IDTable2;
+	
+	@FXML private TableColumn<Media, String> TitleTable2;
+
+	@FXML private TableColumn<Media, String> CategoryTable2;
+	
+	@FXML private TableColumn<Media, Float> CostTable2;
+
+	@FXML private TableColumn<Media, String> typeTable2;
+	
+	@FXML private TableColumn<Media, CheckBox> selectedTable2;
+	
+	private ObservableList<Media> List2;
+	
+	public void showOptionPane2(ActionEvent e) {
 		if(check) {
 			showImage.setVisible(false);
 			addItems.setVisible(false);
@@ -187,7 +287,32 @@ public class Controller implements Initializable {
 			topLabel.setText("WARNING!");
 			bottomLabel.setText("Please create new order!");
 		}
-		count++;
+		
+	}
+	
+	
+	public void removeItemsEvent(ActionEvent e) {
+		int count = 0;
+		for(int i = 0; i < List2.size(); i++) {
+			Media item = List2.get(i);
+			if(item.getSelected().isSelected()) {
+				newOrder.removeMedia(item);
+				count++;
+			}
+		}
+		Dialog<String> dialog = new Dialog<String>();
+		if(count == 0) {
+			dialog.setTitle("MESSAGE!");
+			dialog.setContentText("No item to remove!");
+		} else {
+			dialog.setTitle("MESSAGE!");
+			dialog.setContentText("Remove item(s) successful!");	
+			removeEventListening();
+			showEventListening();
+		}
+		
+		dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+		dialog.show();
 	}
 	
 	
@@ -207,18 +332,34 @@ public class Controller implements Initializable {
 			topLabel.setText("WARNING!");
 			bottomLabel.setText("Please create new order!");
 		}
-		count++;
+		
 	}
 
 	@Override
 	public void initialize(java.net.URL arg0, ResourceBundle arg1) {
 		
-		/******************************************************************************/
 		//Add Items
 		
+		addEventListening();
+		
+		//Remove Items
+		removeEventListening();
+	
+		//Show Order
+		showEventListening();
+		
+	}
+	
+	
+	/******************************************************************************/
+	//Draw layout in addEvent
+	
+	public void addEventListening() {
 		List = FXCollections.observableArrayList();
 		
 		for(Media item : managerOrder.getItemsOrdered()) {
+			CheckBox cb = new CheckBox();
+			item.setSelected(cb);
 			List.add(item);
 		}
 		
@@ -227,9 +368,10 @@ public class Controller implements Initializable {
 		CategoryTable.setCellValueFactory(new PropertyValueFactory<Media, String>("category"));
 		CostTable.setCellValueFactory(new PropertyValueFactory<Media, Float>("cost"));
 		typeTable.setCellValueFactory(new PropertyValueFactory<Media, String>("typeString"));
+		selectedTable.setCellValueFactory(new PropertyValueFactory<Media, CheckBox>("selected"));
 		table.setItems(List);
 		
-		FilteredList<Media> filteredOrder = new FilteredList<>(List, b ->true);
+		filteredOrder = new FilteredList<>(List, b ->true);
 		
 		searchField.textProperty().addListener((Observable, oldValue, newValue) -> {
 			filteredOrder.setPredicate(media -> {
@@ -255,15 +397,39 @@ public class Controller implements Initializable {
 			});
 		});
 		
-		SortedList<Media> sortedOrder = new SortedList<>(filteredOrder);
+		sortedOrder = new SortedList<>(filteredOrder);
 		
 		sortedOrder.comparatorProperty().bind(table.comparatorProperty());
 		
 		table.setItems(sortedOrder);
+	}
+	
+	/******************************************************************************/
+	//Draw layout in addEvent
+	
+	public void removeEventListening() {
+		List2 = FXCollections.observableArrayList();
 		
-		/******************************************************************************/
-		//Show Order
+		for(Media item : newOrder.getItemsOrdered()) {
+			CheckBox cb = new CheckBox();
+			item.setSelected(cb);
+			List2.add(item);
+		}
 		
+		IDTable2.setCellValueFactory(new PropertyValueFactory<Media, Integer>("ID"));
+		TitleTable2.setCellValueFactory(new PropertyValueFactory<Media, String>("title"));
+		CategoryTable2.setCellValueFactory(new PropertyValueFactory<Media, String>("category"));
+		CostTable2.setCellValueFactory(new PropertyValueFactory<Media, Float>("cost"));
+		typeTable2.setCellValueFactory(new PropertyValueFactory<Media, String>("typeString"));
+		selectedTable2.setCellValueFactory(new PropertyValueFactory<Media, CheckBox>("selected"));
+		table2.setItems(List2);
+	}
+	
+	
+	/******************************************************************************/
+	//Draw layout in showEvent
+	
+	public void showEventListening() {
 		int type, size = newOrder.getSize();
 		Media media;
 		ArrayList<Track> tracksList;
@@ -309,6 +475,4 @@ public class Controller implements Initializable {
 		showOrder.setShowRoot(false);
 		showOrder.setVisible(false);
 	}
-	
-	
 }
