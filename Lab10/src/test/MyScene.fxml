@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="930.0" text="Aims app" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.Controller">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="478.0" prefWidth="928.0">
+         <children>
+            <SplitPane dividerPositions="0.2704741379310345" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="930.0">
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <Button fx:id="button1" layoutX="45.0" layoutY="50.0" mnemonicParsing="false" onAction="#showDialog" prefHeight="40.0" prefWidth="140.0" text="New Order" />
+                        <Button fx:id="button2" layoutX="45.0" layoutY="120.0" mnemonicParsing="false" onAction="#showOptionPane" prefHeight="40.0" prefWidth="140.0" text="Add Items" />
+                        <Button fx:id="button3" layoutX="45.0" layoutY="190.0" mnemonicParsing="false" onAction="#showOptionPane2" prefHeight="40.0" prefWidth="140.0" text="Remove Items" />
+                        <Button fx:id="button4" layoutX="45.0" layoutY="260.0" mnemonicParsing="false" onAction="#showOrderEvent" prefHeight="40.0" prefWidth="140.0" text="Show Order" />
+                        <Button fx:id="button5" layoutX="45.0" layoutY="330.0" mnemonicParsing="false" onAction="#luckyItemEvent" prefHeight="40.0" prefWidth="140.0" text="Lucky Item" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="600.0">
+                     <children>
+                        <AnchorPane fx:id="showImage" prefHeight="478.0" prefWidth="670.0">
+                           <children>
+                              <ImageView fitHeight="339.0" fitWidth="629.0" layoutX="44.0" layoutY="-13.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../image/d.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="sasuke" fitHeight="301.0" fitWidth="281.0" layoutX="381.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../image/a.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="bottomLabel" alignment="CENTER" layoutX="73.0" layoutY="123.0" prefHeight="66.0" prefWidth="555.0" text="OMOSHIROI !!!" textAlignment="RIGHT">
+                                 <font>
+                                    <Font size="45.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fx:id="pain" fitHeight="252.0" fitWidth="374.0" layoutX="288.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../image/f.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="tobirama" fitHeight="330.0" fitWidth="585.0" layoutX="249.0" layoutY="161.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../image/e.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="topLabel" layoutX="117.0" layoutY="52.0" prefHeight="83.0" prefWidth="495.0" text="AIMS? hmmm...">
+                                 <font>
+                                    <Font size="38.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="addItems" layoutX="17.0" layoutY="14.0" prefHeight="452.0" prefWidth="634.0" visible="false">
+                           <children>
+                              <Button fx:id="CancelButtonTask1" layoutX="170.0" layoutY="430.0" mnemonicParsing="false" onAction="#returnHomeEvent" prefWidth="120.0" text="CANCEL" />
+                              <Button fx:id="AddButtonTask1" layoutX="330.0" layoutY="430.0" mnemonicParsing="false" onAction="#addItemsEvent" prefWidth="120.0" text="ADD" />
+                              <Label layoutX="48.0" layoutY="29.0" text="Search" />
+                              <TextField fx:id="searchField" layoutX="129.0" layoutY="23.0" prefHeight="39.0" prefWidth="454.0" promptText="Search ID, title, category..." />
+                              <TableView fx:id="table" layoutX="1.0" layoutY="66.0" prefHeight="357.0" prefWidth="632.0">
+                                <columns>
+                                    <TableColumn fx:id="selectedTable" prefWidth="58.0" text="Select" />
+                                  <TableColumn fx:id="IDTable" prefWidth="52.0" text="ID" />
+                                  <TableColumn fx:id="TitleTable" prefWidth="173.0" text="Title" />
+                                    <TableColumn fx:id="CategoryTable" prefWidth="153.0" text="Catagory" />
+                                    <TableColumn fx:id="CostTable" prefWidth="95.0" text="Cost" />
+                                    <TableColumn fx:id="typeTable" prefWidth="100.0" text="Type" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="removeItems" layoutX="17.0" layoutY="14.0" prefHeight="452.0" prefWidth="634.0" visible="false">
+                           <children>
+                              <TableView fx:id="table2" layoutX="1.0" layoutY="66.0" prefHeight="357.0" prefWidth="632.0">
+                                <columns>
+                                  <TableColumn fx:id="selectedTable2" prefWidth="58.0" text="Selsect" />
+                                    <TableColumn fx:id="IDTable2" prefWidth="52.0" text="ID" />
+                                  <TableColumn fx:id="TitleTable2" prefWidth="173.0" text="Title" />
+                                    <TableColumn fx:id="CategoryTable2" prefWidth="153.0" text="Category" />
+                                    <TableColumn fx:id="CostTable2" prefWidth="95.0" text="Cost" />
+                                    <TableColumn fx:id="typeTable2" prefWidth="100.0" text="Type" />
+                                </columns>
+                              </TableView>
+                              <Button layoutX="170.0" layoutY="430.0" mnemonicParsing="false" onAction="#returnHomeEvent" prefWidth="120.0" text="CANCEL" />
+                              <Button layoutX="330.0" layoutY="430.0" mnemonicParsing="false" onAction="#removeItemsEvent" prefWidth="120.0" text="REMOVE" />
+                              <Label layoutX="8.0" prefHeight="75.0" prefWidth="230.0" text="Your Order" textFill="#f80000">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <effect>
+                              <Glow />
+                           </effect></AnchorPane>
+                        <TreeView fx:id="showOrder" layoutX="17.0" layoutY="14.0" prefHeight="451.0" prefWidth="634.0" visible="false" />
+                        <AnchorPane fx:id="luckyItem" layoutX="17.0" layoutY="14.0" prefHeight="452.0" prefWidth="634.0" visible="false">
+                           <children>
+                              <TextField fx:id="priceField" layoutX="308.0" layoutY="141.0" prefHeight="51.0" prefWidth="286.0" />
+                              <Label fx:id="labelTask5" layoutX="33.0" layoutY="147.0" prefHeight="40.0" prefWidth="219.0" text="Enter price here" textAlignment="RIGHT">
+                                 <font>
+                                    <Font size="28.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="OKButtonTask5" layoutX="308.0" layoutY="226.0" mnemonicParsing="false" onAction="#getLuckyItem" prefHeight="39.0" prefWidth="75.0" text="OK" />
+                              <Label fx:id="warningTask5" layoutX="312.0" layoutY="199.0" text="Invalid Input! Please enter number!" textFill="#f80707" visible="false" />
+                           </children>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </AnchorPane>
+                     </children></AnchorPane>
+               </items>
+            </SplitPane>
+         </children></AnchorPane>
+  </content>
+</TitledPane>
